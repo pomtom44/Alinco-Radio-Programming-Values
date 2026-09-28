@@ -25,7 +25,7 @@ next person doesn't have to.
 
 ## Radios Documented
 
-- [Alinco DR-138 MKII](radios/alinco-dr138-mkii.md) - VHF mobile, ERW-7 clone cable
+- [Alinco DR-138 MKII](radios/alinco-dr138-mkii/alinco-dr138-mkii_readme.md)
 
 ## Disclaimer
 
@@ -71,8 +71,18 @@ relying on any of it.
 
 ## Repo Structure
 
-One markdown file per radio under `radios/`, covering everything for that radio: protocol notes,
-then the full memory map in byte order, grouped by region.
+One subfolder per radio under `radios/`, named after the radio (e.g. `radios/alinco-dr138-mkii/`).
+Every file inside is prefixed with that same name:
+
+- `<radio>_readme.md` — narrative overview: what the radio is, how it was captured, safety notes
+  specific to it. Nothing that's already covered by this root README.
+- `<radio>_protocol.md` — raw values only: byte-exact wire frames, then the full memory map,
+  every offset accounted for (a real value, or explicitly `unknown`).
+- `<radio>_write_<something>.py` — a standalone example script: no external data files, the full
+  factory-default image embedded inline, a block of named/editable fields at the top for building
+  your own config from it.
+- any raw capture data (e.g. a captured factory-default image as `.bin`) the docs above were
+  built from, same naming prefix.
 
 Add a new radio by copying that shape. If it shares a protocol family with one already here
 (common with rebadged/OEM radios), link back to the shared parts instead of duplicating them.
@@ -107,4 +117,4 @@ are listed.
 
 ## License
 
-No license chosen yet.
+MIT — see [`LICENSE`](LICENSE).
